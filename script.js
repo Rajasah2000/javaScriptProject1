@@ -1,5 +1,5 @@
 async function getUser(){
-    var addUserButton = document.querySelectorAll('button')
+    const addUserButton = document.querySelectorAll('button')
     addUserButton.forEach((number) => {
         number.disabled=true;
     })
@@ -9,51 +9,49 @@ async function getUser(){
         number.disabled=false;
     })
     const wealth = Math.floor((Math.random()*1000000)+1);
-    var tableBody = document.getElementById('bodySection')
-    var row = tableBody.insertRow(0) 
-    var cell1 = row.insertCell(0)
-    var cell2 = row.insertCell(1)
+    const tableBody = document.getElementById('bodySection');
+    let row = tableBody.insertRow(0) 
+    let cell1 = row.insertCell(0)
+    let cell2 = row.insertCell(1)
     cell1.innerHTML=data.results[0].name.first+' '+data.results[0].name.last;
     cell2.innerHTML= wealth;
 }
  
 const  doubleMoney = () => {
-    var addUserButton = document.querySelectorAll('button')
+    const addUserButton = document.querySelectorAll('button')
     addUserButton.forEach((number) => {
         number.disabled=true;
     })
-    var allTd = document.querySelectorAll('td')
-    console.log(allTd);
-    var double=[],j=0;
-    for(i=0;i<allTd.length;i++)
-    {
-        if(i%2!=0){
-            double.push(parseInt(allTd[i].innerHTML)*2);
-            allTd[i].innerHTML = double[j];
+    const allTd = document.querySelectorAll('td')
+    let double=[],j=0;
+    allTd.forEach((num,index) => {
+        if(index%2 != 0){
+            double.push(parseInt(num.innerHTML)*2)
+            num.innerHTML = double[j];
             j++;
         }
-    }
+    })
     addUserButton.forEach((number) => {
         number.disabled=false;
     })
 }
 
 const showMillionaries = () => {
-    var addUserButton = document.querySelectorAll('button')
+    const addUserButton = document.querySelectorAll('button')
     addUserButton.forEach((number) => {
         number.disabled=true;
     })
-    var array=[];
-    var allTd = document.querySelectorAll('td')
-    for(i=0;i<=allTd.length;i++){
-        if(i%2!=0){
-           if(allTd[i].innerHTML >= 1000000){
-            array.push(allTd[i].innerHTML);
-                allTd[i].style.backgroundColor="green";
-                allTd[i].style.color="white";      
-           }
+    let array=[];
+    const allTd = document.querySelectorAll('td')
+    allTd.forEach((item,index)=>{
+        if(index%2 != 0){
+            if(item.innerHTML >= 1000000){
+                array.push(item.innerHTML);
+                item.style.backgroundColor="green";
+                item.style.color="white";
+            }
         }
-    }
+    })
     if (array.length ==0) {
         alert('No Millionaries person in the table')
     }
@@ -63,8 +61,8 @@ const showMillionaries = () => {
 }
 
 const sortByReachest = () => {
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("myTable");
+    const table = document.getElementById("myTable");
+    var rows, switching, i, x, y, shouldSwitch;
     switching = true;
     while (switching) {
       switching = false;
@@ -86,17 +84,17 @@ const sortByReachest = () => {
   }
 
 const TotalWealth = () => {
-    var addUserButton = document.querySelectorAll('button')
+    const addUserButton = document.querySelectorAll('button')
     addUserButton.forEach((number) => {
         number.disabled=true;
     })
-    var allTd = document.querySelectorAll('td');
-    var sum=0;
-    for(i=0;i<=allTd.length;i++){
-        if(i%2!=0){
-           sum =sum+parseInt( allTd[i].innerHTML);
+    const allTd = document.querySelectorAll('td');
+    let sum=0;
+    allTd.forEach((item,index)=>{
+        if(index%2 != 0){
+            sum = sum+parseInt(item.innerHTML);
         }
-    }
+    })
     document.getElementById('totalWealth').innerHTML = 'Total Wealth = '+ sum;
     addUserButton.forEach((number) => {
         number.disabled=false;
